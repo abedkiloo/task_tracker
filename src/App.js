@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 import { useState } from 'react'
 
 function App() {
@@ -19,7 +20,14 @@ function App() {
     }
 ])
 
-
+// add rask
+const addTask = (task) => {
+  const id = Math.floor(Math.random()* 1000)+1
+  const nwTask= { id ,...task}
+  
+  setTasks([...tasks,nwTask])
+  console.log(nwTask)
+}
 
 // delete tak
 
@@ -38,6 +46,7 @@ function App() {
   }
   return (
     <div className="container">
+      <AddTask onAdd={addTask}/>
       <Header title="Task Tracker"/>
      { tasks.length > 0 ? 
      <Tasks 
