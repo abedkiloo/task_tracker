@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
-import Immutable from 'seamless-Immutable';
+import Immutable from 'seamless-immutable';
 
 
 
@@ -15,6 +15,7 @@ export default function postsReducer(state=initialState,action={}){
                 posts:action.payload,
                 postsIsFetched:true
             })
+
         default:
             return state
     }
