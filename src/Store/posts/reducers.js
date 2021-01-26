@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import Immutable from 'seamless-immutable';
 import * as processTypes from "./processTypes"
 
 
@@ -10,7 +9,8 @@ const initialState = {
 
 }
 
-export default function postsReducer(state=initialState,action={}){
+export default function postsReducer(state = initialState,action={}){
+
     switch(action.type){
         case actionTypes.FETCH_POSTS_REQUESTED:
            // update the process to show processing
@@ -23,11 +23,12 @@ export default function postsReducer(state=initialState,action={}){
             }
         case actionTypes.FETCH_POSTS_SUCCEEDED:
         // update the process to show success and add the data fetched to store
-            return {
+            const new_state = {
                 ...state,
                 fetchPostsProcess: { status: processTypes.SUCCESS, message: "" },
                 posts: action.payload.posts,
             };
+            return new_state
         case actionTypes.FETCH_POSTS_FAILED:
             // update the process to show an error with the error message from the action
             return {

@@ -9,15 +9,14 @@ export const fetchPosts = ()=>{
             type: actionTypes.FETCH_POSTS_REQUESTED
         })
 
-        return JsonPlaceHolder.getPosts()
-            .then(response=>{
+         JsonPlaceHolder.getPosts()
+            .then((response)=>{
                 if (response.status === 200){
-                    response.data.then((post)=>{
-                        dispatch({
-                            type: actionTypes.FETCH_POSTS_SUCCEEDED,
-                            payload: { post }
-                        });
-                    })
+                    dispatch({
+                        type: actionTypes.FETCH_POSTS_SUCCEEDED,
+                        payload: {posts:response.data}
+                    });
+                    
                 }else{
                     dispatch({
                         type : actionTypes.FETCH_POSTS_FAILED,
@@ -27,7 +26,8 @@ export const fetchPosts = ()=>{
                     })
                 }
             })
-            .catch(()=>{
+            .catch((error)=>{
+                console.log(error)
                 dispatch({
                     type: actionTypes.FETCH_POSTS_DISCONNECTED,
                     payload : {

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 //import actions and selectors from the Store folder
 import * as postActions from "../Store/posts/actions"
 import * as postSelectors from "../Store/posts/selectors"
+import PropTypes from "prop-types";
 
 //importing component
 import PostItem from "../components/PostItem"
@@ -22,25 +23,34 @@ class PostPage extends Component{
         return(
             <div>
             <h1>Posts</h1>
-            <div>{
-                this.props.fetchPostProcess 
-            }</div>
+            <div>
+                {this.props.posts.map((post,i)=>{
+                    return <PostItem key={i} post={post} />
+                })}
+            </div>
           </div>
             )
     }
 }
-
+PostPage.protoTypes={
+    fetchPostProcess: PropTypes.object.isRequired,
+    posts: PropTypes.array.isRequired,
+    postActions: PropTypes.object.isRequired,
+}
 //get the posts and the fetch status from the post selector
-const mapStateToProps = (state,ownProps) => {
+const mapStateToProps = (state) => {
+    console.log(state)
     return{
         fetchPostProcess: postSelectors.getFetchPostsProcess(state),
         posts: postSelectors.getPosts(state)
     }
 }
 
-const mapDispatchToProps= (dispatch,ownProps)=>{
+const mapDispatchToProps= (dispatch)=>{
     return {
         postActions: bindActionCreators(postActions, dispatch)
     }
 }
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
