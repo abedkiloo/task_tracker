@@ -1,7 +1,5 @@
-export function getPosts(state){
-    return state.postsReducer.posts
-}
+export const getFetchPostsProcess = (state) => state.fetchPostsProcess;
+export const getPosts = (state) => state.posts;
 
-export function getPostStatus(state){
-    return state.postsReducer.postsIsFetched
-}
+// export const getFetchPostsProcess = ({ posts }) => posts.fetchPostsProcess;
+// export const getPosts = ({ posts }) => posts.posts;

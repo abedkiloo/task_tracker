@@ -1,23 +1,60 @@
-import * as types from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import Immutable from 'seamless-immutable';
+import * as processTypes from "./processTypes"
 
 
 
-const initialState = Immutable({
-    posts:undefined,
-    postsIsFetched:false
-})
+const initialState = {
+    posts:[],
+    fetchPostsProcess: { status:processTypes.IDLE, message:"" },
+
+}
 
 export default function postsReducer(state=initialState,action={}){
     switch(action.type){
-        case types.POSTS_RECEIVED:
-            return state.merge({
-                posts:action.payload,
-                postsIsFetched:true
-            })
-
+        case actionTypes.FETCH_POSTS_REQUESTED:
+           // update the process to show processing
+            return {
+                ...state,
+                fetchPostsProcess: {
+                    status:processTypes.PROCESSING,
+                    message:""
+                }
+            }
+        case actionTypes.FETCH_POSTS_SUCCEEDED:
+        // update the process to show success and add the data fetched to store
+            return {
+                ...state,
+                fetchPostsProcess: { status: processTypes.SUCCESS, message: "" },
+                posts: action.payload.posts,
+            };
+        case actionTypes.FETCH_POSTS_FAILED:
+            // update the process to show an error with the error message from the action
+            return {
+                ...state,
+                fetchPostsProcess: {
+                status: processTypes.ERROR,
+                message: action.payload.message,
+                },
+            };
+        case actionTypes.FETCH_POSTS_DISCONNECTED:
+            // update the process to disconnected
+            return {
+                ...state,
+                fetchPostsProcess: {
+                status: processTypes.DISCONNECTED,
+                message: action.payload.message,
+                },
+            };
+        case actionTypes.FETCH_POSTS_RESET:
+            // return our process and data to initial
+            return {
+                ...state,
+                fetchPostsProcess: initialState.fetchPostsProcess,
+                posts: initialState.posts,
+            };
         default:
-            return state
+            return state;
     }
 
 }

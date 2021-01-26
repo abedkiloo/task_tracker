@@ -21,28 +21,19 @@ class PostPage extends Component{
     render(){
         return(
             <div>
-            { 
-                this.props.postsIsFetched ?(
-                    <div>
-                        {this.props.posts.map((post,i)=>{
-                               return <PostItem key={i}
-                                    post={post}
-                                    clickAction={this.showPost}
-                                />
-                        })}
-                    </div>
-                ):
-                (<h3>Loading .....</h3>)
-            }
-            </div>
-        )
+            <h1>Posts</h1>
+            <div>{
+                this.props.fetchPostProcess 
+            }</div>
+          </div>
+            )
     }
 }
 
 //get the posts and the fetch status from the post selector
 const mapStateToProps = (state,ownProps) => {
     return{
-        postsIsFetched:postSelectors.getPostStatus(state),
+        fetchPostProcess: postSelectors.getFetchPostsProcess(state),
         posts: postSelectors.getPosts(state)
     }
 }
