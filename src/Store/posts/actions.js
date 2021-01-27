@@ -27,7 +27,6 @@ export const fetchPosts = ()=>{
                 }
             })
             .catch((error)=>{
-                console.log(error)
                 dispatch({
                     type: actionTypes.FETCH_POSTS_DISCONNECTED,
                     payload : {

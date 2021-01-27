@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes'
 import UserPlaceHolder from './services'
+
+
 export const fetchUsers = () =>{
     return (dispatch)=>{
         dispatch({type : actionTypes.FETCH_USERS_REQUESTED})

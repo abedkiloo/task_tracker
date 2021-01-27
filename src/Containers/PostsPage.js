@@ -39,7 +39,6 @@ PostPage.protoTypes={
 }
 //get the posts and the fetch status from the post selector
 const mapStateToProps = (state) => {
-    console.log(state)
     return{
         fetchPostProcess: postSelectors.getFetchPostsProcess(state),
         posts: postSelectors.getPosts(state)

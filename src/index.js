@@ -9,12 +9,8 @@ import { combineReducers, createStore,  applyMiddleware  } from "redux"
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk'
 
-import postsReducer from "./Store/posts/reducers"
+import store from "./Store/configureStore"
 
-const rootReducer = combineReducers({
-  postsReducer
-})
-const store  = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>

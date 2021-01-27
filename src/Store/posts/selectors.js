@@ -1,14 +1,6 @@
-// export function getPosts(state){
-//     return state.postsReducer.posts
-// }
-
-// export function getPostStatus(state){
-//     return state.postsReducer.postsIsFetched
-// }
-
-export const getFetchPostsProcess = ({postsReducer}) =>{ 
-    return postsReducer.fetchPostsProcess
+export const getFetchPostsProcess = ({posts}) =>{ 
+    return posts.fetchPostsProcess
 };
-export const getPosts = ({postsReducer}) => {
-    return postsReducer.posts
+export const getPosts = ({posts}) => {
+    return posts.posts
 };

@@ -3,15 +3,17 @@ const initialState={
     users:[],
     usersIsFetched: false
 }
-export default  usersReducer= (state=initialState,actions={}) =>{
+export default function usersReducer(state = initialState, action = {}) {
 
-    switch(actions.type){
+    switch (action.type) {
         case actionTypes.FETCH_USERS_SUCCEEDED:
             return {
                 ...state,
                 usersIsFetched: true,
-                users: actions.payload.users
+                users: action.payload.users
             }
+        default:
+            return state;
     }
 
 }
