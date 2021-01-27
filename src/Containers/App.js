@@ -1,5 +1,11 @@
 import React , { Component } from "react"
-// import "babel-polyfill"
+
+import { 
+    BrowserRouter as Router, 
+    Route, 
+    Link, 
+    Switch 
+} from 'react-router-dom'; 
 
 import PostsPage from "./PostsPage"
 import UsersPage from "./UsersPage"
@@ -7,11 +13,23 @@ import UsersPage from "./UsersPage"
 export default class App extends Component{
     render(){
         return(
-            //add screen inside the div
-            <div>
-                {/* <PostsPage/> */}
-                <UsersPage/>
-            </div> 
+            
+            <Router>
+                <nav className="container">
+                    <ul> 
+                        <li> 
+                            <Link to="/">Users</Link> 
+                        </li> 
+                        <li> 
+                            <Link to="/posts">Posts</Link> 
+                        </li> 
+                    </ul> 
+                </nav>
+                <Switch> 
+                    <Route exact path="/" component={UsersPage}/>
+                    <Route exact path="/posts" component={PostsPage}/>
+                </Switch> 
+            </Router>
         )
     }
 }

@@ -21,12 +21,13 @@ class PostPage extends Component{
     }
     render(){
         return(
-            <div>
+            <div className="container">
             <h1>Posts</h1>
             <div>
                 {this.props.posts.map((post,i)=>{
-                    return <PostItem key={i} post={post} />
+                    return <PostItem key={i} post={post} clickAction={this.showPost}/>
                 })}
+               
             </div>
           </div>
             )

@@ -17,19 +17,22 @@ class UsersPage extends Component{
 
     //get alert from the  
     showUser(user){
-        alert(user.body)
+        alert(user)
     }
     render(){
         return(
-            <div>
+            <div className="container">
             <h1>Users</h1>
+                <b><i>{
+                    this.props.fetchUserProcess.status ? ( <h3>Loading</h3>): (<h4>Completed</h4>)
+                }</i></b>
             <div>
                 {this.props.users.map((user,i)=>{
-                    return <UserItem key={i} user={user} />
+                    return <UserItem key={i} user={user} clickAction={this.showUser} />
                 })}
             </div>
           </div>
-            )
+        )
     }
 }
 UsersPage.protoTypes={
